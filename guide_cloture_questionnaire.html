@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Guide Clôture Interactif</title>
+    <meta name="description" content="Outil interactif pour choisir la clôture idéale selon vos besoins.">
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 2rem; line-height: 1.6; background-color: #f9f9f9; }
+        h1 { color: #1b5e20; }
+        label { font-weight: bold; display: block; margin-top: 1rem; }
+        select, button { width: 100%; padding: 0.5rem; margin-top: 0.5rem; }
+        .result { margin-top: 2rem; padding: 1rem; background-color: #e8f5e9; border-left: 4px solid #2e7d32; }
+        .footer { margin-top: 50px; text-align: center; font-size: 0.9em; color: #555; }
+        .footer a { color: #2e7d32; text-decoration: none; font-weight: bold; }
+        .footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Quel type de clôture choisir ?</h1>
+    <p>Répondez aux questions ci-dessous pour découvrir la clôture la mieux adaptée à vos besoins.</p>
+
+    <form id="quizForm">
+        <label for="usage">Quel est le but principal de votre clôture ?</label>
+        <select id="usage">
+            <option value="protection">Protection / Sécurité</option>
+            <option value="animaux">Empêcher les animaux de sortir</option>
+            <option value="décoration">Décoration du jardin</option>
+        </select>
+
+        <label for="budget">Quel est votre budget ?</label>
+        <select id="budget">
+            <option value="économique">Économique</option>
+            <option value="moyen">Moyen</option>
+            <option value="élevé">Élevé</option>
+        </select>
+
+        <label for="terrain">Quel type de terrain avez-vous ?</label>
+        <select id="terrain">
+            <option value="plat">Plat</option>
+            <option value="irrégulier">Irrégulier / en pente</option>
+        </select>
+
+        <button type="button" onclick="showResult()">Voir le résultat</button>
+    </form>
+
+    <div id="result" class="result" style="display:none;"></div>
+
+    <div class="footer">
+        <p>Offert par <a href="https://clotureonline.com" rel="dofollow">clotureonline.com</a></p>
+    </div>
+
+    <script>
+        function showResult() {
+            const usage = document.getElementById('usage').value;
+            const budget = document.getElementById('budget').value;
+            const terrain = document.getElementById('terrain').value;
+
+            let resultText = "Nous vous recommandons : ";
+
+            if (usage === "protection" && budget === "élevé") {
+                resultText += "une clôture rigide avec occultation.";
+            } else if (usage === "protection" && budget !== "élevé") {
+                resultText += "une clôture rigide classique.";
+            } else if (usage === "animaux") {
+                resultText += "une clôture souple avec piquets.";
+            } else if (usage === "décoration") {
+                resultText += "une clôture bois ou composite.";
+            }
+
+            if (terrain === "irrégulier") {
+                resultText += " Choisissez des systèmes adaptés aux terrains en pente.";
+            }
+
+            document.getElementById('result').innerText = resultText;
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
